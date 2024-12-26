@@ -32,7 +32,7 @@ class AWordGame:
         self.start_new_game()
 
     def reset(self):
-        self.__init__()
+        self.__init__(dictionary)
 
     def define_level(self):
         if self.level == 1:
