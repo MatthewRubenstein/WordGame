@@ -88,6 +88,7 @@ class AWordGame:
         self.current_word.clear()
         self.level += 1
         if self.level > 10:
+            st.write("You've completed the game! There are only 10 levels.")
             return
         self.level_completed = False
         self.define_level()
@@ -204,6 +205,28 @@ def get_longest_words(all_possible_words):
     return longest_words
 
 
+def select_letter(letter):
+    print(letter)
+
+
+def display_letters(self):
+    # Create columns based on the number of available letters
+    num_columns = len(
+        self.letters
+    )  # You can adjust this based on your layout preference
+    num_letters = len(self.letters)
+    columns = st.columns(num_columns)
+
+    # Create a box or button for each letter
+    for i, letter in enumerate(self.letters):
+        col = columns[i]  # Distribute letters across the columns
+        with col:
+            # Display each letter as a button inside a box
+            if st.button(letter.upper(), key=f"letter_{i}_{letter.upper()}"):
+                # Add logic when the letter button is clicked, like adding it to a word
+                select_letter(letter.upper())
+
+
 # Load the dictionary
 dictionary = load_scrabble_words("sowpodsDict.txt")
 
@@ -243,7 +266,8 @@ if st.sidebar.button("Reset Game"):
 
 st.write(f"Level: {game.level}")
 st.write(f"Points: {game.points}")
-st.write(f"Letters: {', '.join(game.letters)}")
+display_letters(game)
+# st.write(f"Letters: {', '.join(game.letters.upper())}")
 
 
 def secSubmitWord():
@@ -257,5 +281,5 @@ word = st.text_input("Enter a word:", on_change=game.submit_word, key="input_wor
 
 update_word_display(game.all_possible_words, game.found_words)
 
-if st.sidebar.checkbox("Show Possible Words"):
-    st.write(game.all_possible_words)
+# if st.sidebar.checkbox("Show Possible Words"):
+#     st.write(game.all_possible_words)
