@@ -84,12 +84,12 @@ class AWordGame:
         self.level = 0
 
     def start_new_game(self):
-        self.found_words.clear()
-        self.current_word.clear()
-        self.level += 1
         if self.level > 10:
             st.write("You've completed the game! There are only 10 levels.")
             return
+        self.found_words.clear()
+        self.current_word.clear()
+        self.level += 1
         self.level_completed = False
         self.define_level()
         self.letters = self.all_level_letters[self.level - 1]
